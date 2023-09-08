@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    background-color: #eeeeeeea;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-list-container {
+    background-color: #fff;
+    max-width: 500px;
+    width: 100%;
+    max-height: 400px;
+    height: 400px;
+    overflow-y: hidden;
+    border-radius: 5px;
+}
+
+.task-list-container-header {
+    background-color: rgb(210, 69, 38);
+    color: #fff;
+    padding: 15px;
+}
+
+.task-list-container-header h1 {
+    font-size: 45px;
+    line-height: 40px;
+}
+
+.new-task {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom-color: rgb(218 209 209);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.new-task-input {
+    flex-grow: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: none;
+    font-size: 22px;
+    line-height: 19px;
+}
+
+.new-task-input:focus {
+    border: none;
+    outline: none;
+}
+
+.task-input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.task-list-container-body {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+    overflow-y: auto;
+    max-height: 204px;
+}
+
+.task {
+    display: flex;
+    padding: 15px;
+    border-bottom-color: rgb(218 209 209);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.task div {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.task-text {
+    font-size: 22px;
+    line-height: 19px;
+    cursor: auto;
+}
+
+div.checked .task-text {
+    text-decoration: line-through;
+}
+
+.add-icon, .delete-icon {
+    width: 20px;
+    height: 20px;
+    opacity: .5;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.add-icon svg, .delete-icon svg {
+    width: inherit;
+    height: inherit;
+}
+
+.add-icon:hover, .delete-icon:hover {
+    opacity: 1;
+}
+
+@media (max-width: 426px) {
+    .task-list-container {
+        min-width: 100%;
+        min-height: 100vh;
+    }
+}
