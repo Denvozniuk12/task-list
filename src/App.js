@@ -4,45 +4,37 @@ import NewTaskInput from './Components/NewTaskInput';
 import TaskList from './Components/TaskList';
 
 function App() {
-  const tasks = [
-    // {
-    //   id: 1,
-    //   text: "Справа № 1",
-    //   isChecked: true
-    // },
-    // {
-    //   id: 2,
-    //   text: "Справа № 2",
-    //   isChecked: false
-    // }
-  ];
-
-  const [taskList, setTaskList] = useState(tasks);
+  const [taskList, setTaskList] = useState(JSON.parse(localStorage.getItem('todolist')) || []);
 
   const handlerAddNewTask = (id, text) => {
-    setTaskList((prevTaskList) => [
-      ...prevTaskList,
-      {
-        id: id,
-        text: text,
-        isChecked: false
+    const newTaskList = taskList.map((task) => task);
+    newTaskList.push({
+      id: id,
+      text: text,
+      isChecked: false
 
-      }
-    ]);
+    });
+    setTaskList(newTaskList);
+    localStorage.setItem('todolist', JSON.stringify(newTaskList));
   }
 
   const handlerDeleteTask = (id) => {
-    setTaskList((prevTaskList) => {
-      return prevTaskList.filter((task) => {
-        return task.id !== id;
-      });
-    });
+    const newTaskList = taskList.filter((task) => task.id !== id);
+    setTaskList(newTaskList);
+    localStorage.setItem('todolist', JSON.stringify(newTaskList));
+  }
+
+  const handlerTaskChecked = (id) => {
+    const newTaskList = taskList.map((task) => task.id === id ? {...task, isChecked: !task.isChecked} : task);
+    setTaskList(newTaskList);
+    localStorage.setItem('todolist', JSON.stringify(newTaskList));
   }
 
   const val = {
     taskList,
     handlerAddNewTask,
-    handlerDeleteTask
+    handlerDeleteTask,
+    handlerTaskChecked
   }
   return (
     <Context.Provider value={val}>

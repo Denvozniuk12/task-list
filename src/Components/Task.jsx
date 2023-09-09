@@ -4,11 +4,10 @@ import Context from "../Context";
 
 function Task(props) {
     const { task } = props;
-    const [isCheckedState, setIsCheckedState] = useState(task.isChecked);
     const value = useContext(Context);
     
     const handlerChangeCheckedState = () => {
-        setIsCheckedState(() => !isCheckedState);
+        value.handlerTaskChecked(task.id);
     };
     
     const handlerDeleteTask = () => {
@@ -20,8 +19,8 @@ function Task(props) {
 
     return (
       <div id={`task-${task.id}`} className="task">
-        <div className={isCheckedState ? "checked" : ""}>
-            <input className="task-input" type="checkbox" checked={isCheckedState} onChange={(handlerChangeCheckedState)} />
+        <div className={task.isChecked ? "checked" : ""}>
+            <input className="task-input" type="checkbox" checked={task.isChecked} onChange={(handlerChangeCheckedState)} />
             <span className="task-text">{task.text}</span>
         </div>
         <span className="delete-icon" onClick={handlerDeleteTask}>
